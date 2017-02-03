@@ -1,0 +1,56 @@
+#include<iostream>
+using namespace std;
+void printUnsorted(int a[],int n)
+{
+    int s=0,e=n-1,i,min,max;
+    for(s=0;s<n-1;s++)
+    {
+        if(a[s+1]<a[s])
+        break;
+    }
+    for(e=n-1;e>0;e--)
+    if(a[e]<a[e-1])
+     break;
+    max=a[s];
+    min=a[s];
+    for(i=s+1;i<=e;i++)
+    {
+        if(a[i]>max)
+        max=a[i];
+        if(a[i]<min)
+        min=a[i];
+    }
+    for(i=0;i<s;i++)
+    {
+        if(a[i]>min)
+       {
+           s=i;
+         break;
+       }
+    }
+    for(i=n-1;i>=e+1;i--)
+    {
+        if(a[i]<max)
+        {
+            e=i;
+            break;
+        }
+    }
+    cout<<s<<" "<<e<<endl;
+}
+int main()
+ {
+	//code
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int i,n;
+	    cin>>n;
+	    int a[n];
+	    for(i=0;i<n;i++)
+	    cin>>a[i];
+	    printUnsorted(a,n);
+	}
+	return 0;
+}
