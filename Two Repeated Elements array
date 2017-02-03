@@ -1,0 +1,32 @@
+#include<iostream>
+using namespace std;
+void printDups(int a[],int num)
+{
+    int i;
+    for(i=0;i<num;i++)
+    {
+        if(a[abs(a[i])]>0)
+        a[abs(a[i])]= -a[abs(a[i])];
+        
+        else
+        cout<<abs(a[i])<<" ";
+    }
+}
+int main()
+ {
+	//code
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n,i;
+	    cin>>n;
+	    int num=n+2;
+	    int a[num];
+	    for(i=0;i<num;i++)
+	    cin>>a[i];
+	    printDups(a,num);
+	    cout<<endl;
+	}
+	return 0;
+}
