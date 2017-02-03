@@ -1,0 +1,42 @@
+#include<iostream>
+using namespace std;
+void moveToEnd(int a[],int n)
+{
+  int count=0;
+  int i=0;
+  while(i<n)
+  {
+      if(a[i]!=0)
+       {
+           a[count]=a[i];
+           count++;
+       }
+       i++;
+  }
+  
+  while(count<n)
+  {
+      a[count]=0;
+      count++;
+  }
+  
+    for(i=0;i<n;i++)
+    cout<<a[i]<<" ";
+    cout<<endl;
+}
+int main()
+ {
+	//code
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n,i;
+	    cin>>n;
+	    int a[n];
+	    for(i=0;i<n;i++)
+	    cin>>a[i];
+	    moveToEnd(a,n);
+	}
+	return 0;
+}
