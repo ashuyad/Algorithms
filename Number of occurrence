@@ -1,0 +1,55 @@
+#include<iostream>
+using namespace std;
+int start(int a[],int low,int high,int x)
+{
+    if(high>=low)
+    {
+        int mid=(low+high)/2;
+        if((mid==0 ||a[mid-1]<x) &&a[mid]==x)
+          return mid;
+        else if(x>a[mid])
+          return start(a,(mid+1),high,x);
+        else
+          return start(a,low,(mid-1),x);
+    }
+    return -1;
+}
+int last(int a[],int low,int high,int x,int n)
+{
+    if(high>=low)
+    {
+        int mid=(low+high)/2;
+        if((mid==n-1 ||a[mid+1]>x) && a[mid]==x)
+          return mid;
+        else if(x>=a[mid])
+          return last(a,(mid+1),high,x,n);
+        else
+          return last(a,low,(mid-1),x,n);
+    }
+    return -1;
+}
+void printCount(int a[],int n,int x)
+{
+    int s=start(a,0,n-1,x);
+    int e=last(a,s,n-1,x,n);
+    if(s==-1)
+    cout<<"-1"<<endl;
+    else
+    cout<<(e-s+1)<<endl;
+}
+int main()
+ {
+	//code
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int i,n,x;
+	    cin>>n>>x;
+	    int a[n];
+	    for(i=0;i<n;i++)
+	    cin>>a[i];
+	    printCount(a,n,x);
+	}
+	return 0;
+}
