@@ -1,0 +1,84 @@
+#include <iostream>
+#include<algorithm>
+using namespace std;
+int p[10000][4];
+int p_size=0;
+bool check(int a[])
+{
+    int flag=-1;
+    for(int i=0;i<p_size;i++)
+    {
+        if(p[i][0]==a[0] && p[i][1]==a[1] && p[i][2]==a[2] && p[i][3]==a[3])
+        return false;
+    }
+    if(flag==-1)
+    {
+        p[p_size][0] = a[0];
+        p[p_size][1] = a[1];
+        p[p_size][2] = a[2];
+        p[p_size][3] = a[3];
+        p_size++;
+        return true;
+    }
+    return false;
+}
+void removeDuplicates(int arr[], int size, int sum)
+{
+    
+    int count=0;
+    int t=size;
+    int s[t];
+    for(int i=0;i<t;i++)
+    s[i]=arr[i];
+    sort(s,s+t);
+    int i, j, k, l;
+	    for(i=0;i<t;i++)
+	    {
+	        for(j=i+1;j<t;j++)
+	        {
+	            for(k=j+1;k<t;k++)
+	            {
+	                for(l=k+1;l<t;l++)
+	                {
+	                    if(sum==(s[i]+s[j]+s[k]+s[l]))
+	                    {
+	                        int a[4];
+	                        a[0]=s[i];
+	                        a[1]=s[j];
+	                        a[2]=s[k];
+	                        a[3]=s[l];
+	                        sort(a,a+4);
+	                        //cout<<"here"<<endl;
+	                        if(check(a)==true)
+	                        {
+	                            count++;
+	                            cout<<a[0]<<" "<<a[1]<<" "<<a[2]<<" "<<a[3]<<" $";
+	                        }
+	                    }
+	                }
+	            }
+	        }
+	    }
+	    if(count==0)
+	    cout<<"-1";
+    return;
+}
+int main() {
+	//code
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int size, sum;
+	    cin>>size>>sum;
+	    int arr[size];
+	    for(int i=0;i<size;i++)
+	    cin>>arr[i];
+	    //sort(arr,arr+size);
+	    removeDuplicates(arr, size, sum);
+	    //int size = arr.length();
+	    cout<<endl;
+	    p_size=0;
+	}
+	return 0;
+}
