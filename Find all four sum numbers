@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include<iostream>
+#include<algorithm>
+using namespace std;
+int main() {
+    int t;
+    scanf("%d",&t);
+    while(t--){
+        int n,k,sum=0,aux=0;
+        scanf("%d %d",&n,&k);
+        int arr[n+1];
+        for(int i=1;i<=n;i++)
+        scanf("%d",&arr[i]);
+        sort(arr+1,arr+n+1);
+        arr[0]=101;
+        for(int i=1;i<=n;i++){
+            if(arr[i]!=arr[i-1]&&sum+arr[i]<k){
+                sum+=arr[i];
+                for(int j=i+1;j<=n;j++){
+                  if((arr[j]!=arr[j-1]||j==i+1)&&sum+arr[j]<k){
+                  sum+=arr[j];
+                  for(int ka=j+1;ka<=n;ka++){
+                    if((arr[ka]!=arr[ka-1]||ka==j+1)&&sum+arr[ka]<k){
+                    sum+=arr[ka];
+                    for(int l=ka+1;l<=n;l++){
+                        if(sum+arr[l]==k){
+                            aux++;
+                        printf("%d %d %d %d $",arr[i],arr[j],arr[ka],arr[l]);
+                        break;
+                    }
+                    }
+                     sum-=arr[ka];
+                    }
+                  }
+                  sum-=arr[j];
+                }
+            }
+            sum-=arr[i];
+        }
+      } 
+      if(aux==0)
+      printf("%d",-1);
+      printf("\n");
+    }
+	return 0;
+}
