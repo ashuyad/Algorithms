@@ -1,0 +1,39 @@
+#include<iostream>
+#include<limits.h>
+using namespace std;
+int findMinJump(int a[],int n)
+{
+    if(n==0 || a[0]==0)
+      return -1;
+      
+    int jump[n];
+    jump[0]=0;
+    int i,j;
+    for(i=1;i<n;i++)
+    {
+        jump[i]=INT_MAX;
+        for(j=0;j<i;j++)
+        {
+            if(i<=j+a[j] && jump[j]!=INT_MAX)
+                jump[i]=min(jump[i],jump[j]+1);
+        }
+    }
+    return jump[n-1];
+    
+}
+int main()
+ {
+	//code
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n,i;
+	    cin>>n;
+	    int a[n];;
+	    for(i=0;i<n;i++)
+	    cin>>a[i];
+	    cout<<findMinJump(a,n)<<endl;
+	}
+	return 0;
+}
