@@ -1,0 +1,38 @@
+#include<iostream>
+using namespace std;
+int maxSumIs(int a[],int n)
+{
+    int i,j,sum[n],max=-1;
+    for(i=0;i<n;i++)
+    sum[i]=a[i];
+
+    for(i=1;i<n;i++)
+    {
+        for(j=0;j<i;j++)
+        {
+            if(a[i]>a[j] && sum[i]<sum[j]+a[i])
+              sum[i]=sum[j]+a[i];
+        }
+    }
+    for(i=0;i<n;i++)
+    if(max<sum[i])
+      max=sum[i];
+      
+      return max;
+}
+int main()
+ {
+	//code
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n,i;
+	    cin>>n;
+	    int a[n];
+	    for(i=0;i<n;i++)
+	    cin>>a[i];
+	    cout<<maxSumIs(a,n)<<endl;
+	}
+	return 0;
+}
