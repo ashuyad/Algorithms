@@ -1,0 +1,25 @@
+// The task is to complete this function
+int getId(int M[MAX][MAX], int n)
+{
+    //Your code here
+    int a=0,i;
+    int b=n-1;
+    
+    while(a<b)
+    {
+        if(M[a][b])
+          a++;
+        else
+          b--;
+    }
+     // If any person doesn't know 'a' or 'a'
+        // doesn't know any person, return -1
+        for(i=0;i<n;i++)
+    {
+        if ( (i != a) &&
+                (M[a][i] || !M[i][a] ))
+            return -1;
+    }
+ 
+    return a;
+}
