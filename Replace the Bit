@@ -1,0 +1,27 @@
+#include<iostream>
+#include<string.h>
+#include<bitset>
+using namespace std;
+unsigned long  replaceBit(int n,int k)
+{
+    string str = bitset<32>(n).to_string();
+    string str1 = str.substr(str.find('1'));
+     if(str1[k-1]=='1')
+        str1[k-1]='0';
+    unsigned long res = bitset<32>(str1).to_ulong();
+    return res;
+}
+int main()
+ {
+	//code
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n,k;
+	    cin>>n>>k;
+	    unsigned long res=replaceBit(n,k);
+	    cout<<res<<endl;
+	}
+	return 0;
+}
