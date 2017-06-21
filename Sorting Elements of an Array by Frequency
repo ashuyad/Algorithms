@@ -1,0 +1,70 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+struct ele
+{
+    int val,count;
+};
+bool comp1(struct ele a,struct ele b)
+{
+    return (a.val<b.val);
+}
+bool comp2(struct ele a,struct ele b)
+{
+    if(a.count != b.count)
+      return (a.count<b.count);
+    else
+      return (a.val>b.val);
+}
+
+void fsort(int arr[],int n)
+{
+    int i,ind;
+    struct ele element[n];
+    for(i=0;i<n;i++)
+    {
+        element[i].val=arr[i];
+        element[i].count=0;
+    }
+    stable_sort(element,element+n,comp1);
+    element[0].count=1;
+    for(i=1;i<n;i++)
+    {
+        if(element[i].val==element[i-1].val)
+         {
+             element[i].count += element[i-1].count+1;
+             element[i-1].count=-1;
+         }
+        else
+          element[i].count=1;
+    }
+    stable_sort(element,element+n,comp2);
+    
+    for(i=n-1,ind=0;i>=0;i--)
+    {
+        if(element[i].count!=-1)
+         for(int j=0;j<element[i].count;j++)
+         {arr[ind]=element[i].val;
+         ind++;}
+    }
+}
+int main()
+ {
+	//code
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int i,n;
+	    cin>>n;
+	    int arr[n];
+	    for(i=0;i<n;i++)
+	    cin>>arr[i];
+	    fsort(arr,n);
+	    for(i=0;i<n;i++)
+	    cout<<arr[i]<<" ";
+	    cout<<endl;
+	    
+	}
+	return 0;
+}
