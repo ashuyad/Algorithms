@@ -1,0 +1,54 @@
+// Program to find the maximum profit job sequence from a given array
+// of jobs with deadlines and profits
+#include<iostream>
+#include<algorithm>
+using namespace std;
+
+// A structure to represent a job
+struct Job
+{
+char id;	 // Job Id
+int dead; // Deadline of job
+int profit; // Profit if job is over before or on deadline
+};
+
+// This function is used for sorting all jobs according to profit
+bool comparison(Job a, Job b)
+{
+	return (a.profit > b.profit);
+}
+
+// Returns minimum number of platforms reqquired
+void printJobScheduling(Job arr[], int n)
+{
+	// Sort all jobs according to decreasing order of prfit
+	sort(arr, arr+n, comparison);
+
+	char id[n];
+	id[0]=arr[0].id;
+	int i,j=1;
+	int max=arr[0].dead;
+	for(i=1;i<n;i++)
+	{
+	    if(arr[i].dead>=max)
+	    {
+	        id[j]=arr[i].id;
+	        j++;
+	        max=arr[i].dead;
+	    }
+	}
+	for(i=0;i<j;i++)
+	 cout<<id[i]<<" ";
+	 cout<<endl;
+}
+
+// Driver program to test methods
+int main()
+{
+	Job arr[] = { {'a', 2, 100}, {'b', 1, 19}, {'c', 2, 27},
+				{'d', 1, 25}, {'e', 3, 15}};
+	int n = sizeof(arr)/sizeof(arr[0]);
+	cout << "Following is maximum profit sequence of jobs\n";
+	printJobScheduling(arr, n);
+	return 0;
+}
