@@ -1,0 +1,21 @@
+/*
+Structure of the node of the binary tree
+struct Node
+{
+	int data;
+	struct Node *next;
+};
+*/
+// Complete this function
+void deleteAlt(struct Node *head){
+    // Code here
+    Node *cur,*next;
+    cur=head;
+    while(cur!=NULL && cur->next!=NULL)
+    {
+        next=cur->next;
+        cur->next=next->next;
+        free(next);
+        cur=cur->next;
+    }
+}
