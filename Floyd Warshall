@@ -1,0 +1,52 @@
+#include<iostream>
+#define V 20
+using namespace std;
+void minDist(int graph[V][V],int v)
+{
+    int i,j,k;
+    for(i=0;i<v;i++)
+    {
+        for(j=0;j<v;j++)
+        {
+            for(k=0;k<v;k++)
+            {
+                if(graph[j][i]+graph[i][k]<graph[j][k])
+                graph[j][k]=graph[j][i]+graph[i][k];
+                 
+            }
+        }
+    }
+    
+    for(i=0;i<v;i++)
+    {
+        for(j=0;j<v;j++)
+        {
+            cout<<graph[i][j]<<" ";
+        }
+    }
+    cout<<endl;
+}
+int main()
+ {
+	//code
+	int t;
+	int i,j,v;
+	cin>>t;
+	while(t--)
+	{
+	    
+	    cin>>v;
+	    int graph[V][V];
+	    for(i=0;i<v;i++)
+	    {
+	        for(j=0;j<v;j++)
+	        {
+	            cin>>graph[i][j];
+	        }
+	    }
+	    	minDist(graph,v);
+	}
+
+	
+	return 0;
+}
