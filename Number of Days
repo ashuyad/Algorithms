@@ -1,0 +1,23 @@
+#include<iostream>
+using namespace std;
+int main()
+ {
+	//code
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    long int r,s,q;
+	    cin>>r>>s>>q;
+	    int n1,n2;
+	    r-=s;
+	    q-=s;
+	     n1=q/r;
+	    n2=q%r;
+	    if(n2>0)
+	     cout<<n1+1<<endl;
+	     else
+	     cout<<n1<<endl;
+	}
+	return 0;
+}
